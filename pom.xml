@@ -1,8 +1,26 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.graphstream</groupId>
-  <artifactId>gs-app</artifactId>
+  <artifactId>gs-app-click</artifactId>
   <version>0.0.1-SNAPSHOT</version>
+  
+  <!-- Source code of GraphStream is hosted on GitHub. -->
+  <scm>
+ 	<connection>scm:git:git://github.com/graphstream/gs-app-click.git</connection>
+	<developerConnection>scm:git:git://github.com/graphstream/gs-app-click.git</developerConnection>
+	<url>https://github.com/graphstream/gs-app-click</url>
+  </scm>
+	
+  <!-- GraphStream is using the GitHub issue tracker. -->
+  <issueManagement>
+	<system>github</system>
+	<url>https://github.com/graphstream/gs-app-click/issues</url>
+  </issueManagement>
+	
+  <properties>
+	<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+	
   <build>
     <sourceDirectory>src</sourceDirectory>
     <resources>
