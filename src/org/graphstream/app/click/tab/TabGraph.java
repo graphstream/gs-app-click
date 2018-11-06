@@ -13,8 +13,8 @@ import org.graphstream.graph.Edge;
 import org.graphstream.graph.Graph;
 import org.graphstream.graph.Node;
 import org.graphstream.graph.implementations.MultiGraph;
-import org.graphstream.stream.file.FileSinkDOT;
-import org.graphstream.stream.file.FileSourceDOT;
+import org.graphstream.stream.file.FileSinkDGS;
+import org.graphstream.stream.file.FileSourceDGS;
 import org.graphstream.ui.graphicGraph.stylesheet.StyleConstants;
 import org.graphstream.ui.spriteManager.Sprite;
 import org.graphstream.ui.spriteManager.SpriteManager;
@@ -215,7 +215,7 @@ public class TabGraph {
 		if (file != null) {
 			MultiGraph saveGraph = getCopyOfGraph(controller.getGraph());
 			
-			FileSinkDOT fs = new FileSinkDOT();
+			FileSinkDGS fs = new FileSinkDGS();
 			try {
 				if(file.getName().split("\\.").length == 1) 
 					fs.writeAll(saveGraph, file.getAbsolutePath()+".dot");
@@ -235,7 +235,7 @@ public class TabGraph {
 		if (file != null) {
 			controller.setGraph(new MultiGraph("Graph"));
 
-			FileSourceDOT fs = new FileSourceDOT();
+			FileSourceDGS fs = new FileSourceDGS();
 			fs.addSink(controller.getGraph());
 			try {
 				fs.readAll(file.getAbsolutePath());
@@ -561,11 +561,8 @@ public class TabGraph {
 		
 		theGraph.edges().forEach(anEdge -> {
 			Edge e ;
-			if(anEdge.isDirected())
-				e = aGraphCopy.addEdge(anEdge.getId(), anEdge.getSourceNode().getId(), anEdge.getTargetNode().getId(), true);
-			else
-				e = aGraphCopy.addEdge(anEdge.getId(), anEdge.getSourceNode().getId(), anEdge.getTargetNode().getId(), false);
-			
+			e = aGraphCopy.addEdge(anEdge.getId(), anEdge.getSourceNode().getId(), anEdge.getTargetNode().getId(), anEdge.isDirected());
+	
 			anEdge.attributeKeys().forEach(attribute -> {
 				System.out.println(anEdge.getAttribute(attribute).getClass());
 				if ( anEdge.getAttribute(attribute).getClass().isPrimitive() || isWrapperType(anEdge.getAttribute(attribute).getClass()) || anEdge.getAttribute(attribute).getClass().equals(String.class))
